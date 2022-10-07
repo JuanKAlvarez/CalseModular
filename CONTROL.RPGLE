@@ -1,19 +1,26 @@
-**Free
-    /copy COPY
+**free
 
-    dcl-pr PrREntrada;
-        pNombre like(wNombreT);
-        pId     like(wIdT);
-    End-pr
+      /copy COPY
 
-    dcl-Proc PrENtrada;
+      dcl-Proc PrEntrada Export;
         dcl-pi *n;
-            InNombre like(wNombreT);
-            InId     like(wIdT);
+          InNombre like(wNombreT) Const;
+          InId like(wIdT) Const;
+          OutMsgId like(wMsgIdT);
         end-pi;
 
-        dcl-ds dsUsuario likeDs(dsUsuarioT);
-        dsInsertar.Nombre = InNombre;
-        dsInsertar.Id = InId;
-        PrInsertar(dsInsertar);
-    end-Proc;
+
+        dcl-Ds DsUsuario likeDs(DsUsuarioT); 
+
+
+        dcl-s wSqlState like(wSqlStateT);
+
+
+        DsUsuario.Nombre = InNombre;
+        DsUsuario.Id = InId; 
+        DsUsuario.Fecha = FnFormatoFecha(%Date());
+        DsUsuario.Tiempo = FnFormatoTiempo(%Time());
+
+        PrInsertar(DsUsuario:wSqlState);
+
+      end-Proc;
