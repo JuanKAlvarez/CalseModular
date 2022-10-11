@@ -7,12 +7,14 @@
         Tiempo like(wTiempoT);
       end-Ds;
 
-      dcl-s wNombreT char(10) Template;
-      dcl-s wIdT int(5) Template;
-      dcl-s wMsgIdT char(7) Template;
-      dcl-s wFechaT varchar(100) Template;
-      dcl-s wTiempoT varchar(100) Template;
-      dcl-s wSqlStateT char(5) Template;
+      dcl-s wNombreT   char(10)     Template;
+      dcl-s wIdT       int(5)       Template;
+      dcl-s wMsgIdT    char(7)      Template;
+      dcl-s wFechaT    varchar(100) Template;
+      dcl-s wTiempoT   varchar(100) Template;
+      dcl-s wSqlStateT char(5)      Template;
+      dcl-s wErrorT    varchar(100) Template;
+      dcl-s wErrorSqlT varchar(7)   Template;
 
       dcl-pr PrInsertar;
         parUsuario likeDs(DsUsuarioT) Const;
@@ -31,4 +33,8 @@
         parNombre like(wNombreT) Const;
         parId like(wIdT) Const;
         parMsgId like(wMsgIdT);
+      end-pr;
+
+      dcl-pr FnErrorSql like(wErrorT);
+        parErrorSql like(wErrorSqlT) Const;
       end-pr;
