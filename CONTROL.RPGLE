@@ -23,7 +23,8 @@
         DsUsuario.Tiempo = FnFormatoTiempo(%Time());
 
         PrInsertar(DsUsuario:wSqlState);
-
+        
+        OutMsgId  = wSqlState;
         OutDescripMsg = FnErrorSql(wSqlState);
 
       end-Proc;
